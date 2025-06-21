@@ -6,7 +6,10 @@ function ViewItems() {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/items").then(res => setItems(res.data));
+    axios
+      .get("https://itemhub-server-2.onrender.com/api/items")
+      .then(res => setItems(res.data))
+      .catch(err => console.error("Error fetching items:", err));
   }, []);
 
   return (
@@ -20,8 +23,8 @@ function ViewItems() {
             className="bg-white shadow-lg p-4 rounded-lg cursor-pointer hover:scale-105 transition-transform w-64"
           >
             <img
-              src={`http://localhost:5000/${item.coverImage}`}
-              alt=""
+              src={`https://itemhub-server-2.onrender.com/${item.coverImage}`}
+              alt="cover"
               className="w-full h-48 object-cover rounded"
             />
             <p className="mt-2 font-semibold text-center">{item.name}</p>
@@ -39,8 +42,8 @@ function ViewItems() {
               {selected.images.map((img, i) => (
                 <img
                   key={i}
-                  src={`http://localhost:5000/${img}`}
-                  alt="extra"
+                  src={`https://itemhub-server-2.onrender.com/${img}`}
+                  alt={`extra-${i}`}
                   className="w-24 h-24 object-cover rounded"
                 />
               ))}

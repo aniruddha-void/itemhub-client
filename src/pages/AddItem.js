@@ -35,7 +35,10 @@ function AddItem() {
     formData.images.forEach((img) => payload.append("images", img));
 
     try {
-      await axios.post("http://localhost:5000/api/items", payload);
+      await axios.post(
+        "https://itemhub-server-2.onrender.com/api/items",
+        payload
+      );
       setSuccess(true);
       setFormData({
         name: "",
